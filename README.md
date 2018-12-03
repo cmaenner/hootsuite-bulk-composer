@@ -2,6 +2,10 @@
 
 A tool to help automate randomization of messages for the Hootsuite Bulk Composer
 
+## TODO:
+
+• Better documentation on how to use (I promise)
+
 ## How to use
 
     (hootsuite-bulk-composer)$ python main.py -h

@@ -16,7 +16,7 @@ from datetime import date
 from modules.hootsuite_tooling import HootsuiteBulkComposer
 
 # Poistional Arguments
-parser = argparse.ArgumentParser(prog='main.py', usage='python %(progs)s', description="A tool to help automate randomization of messages for the Hootsuite Bulk Composer", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser = argparse.ArgumentParser(prog='main.py', usage='python %(prog)s', description="A tool to help automate randomization of messages for the Hootsuite Bulk Composer", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
 # Optional arguements
 parser.add_argument('-d', '--debug', action='store_true', help='Turn on debug mode')

@@ -1,0 +1,20 @@
+[
+    {
+        "Link": "https://www.accessitgroup.com",
+        "Name": "AccessIT Group",
+        "Tier": 0,
+        "TwitterHandle": "AccessITGroup"
+    },
+    {
+        "Link": "https://drexel.edu",
+        "Name": "Drexel University",
+        "Tier": 0,
+        "TwitterHandle": "DrexelUniv"
+    },
+    {
+        "Link": "http://www.securityriskadvisors.com",
+        "Name": "Security Risk Advisors",
+        "Tier": 0,
+        "TwitterHandle": "secrisk"
+    }
+]

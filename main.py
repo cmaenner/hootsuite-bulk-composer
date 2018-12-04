@@ -97,6 +97,7 @@ def main(sponsors=False):
             # Delete object from list
             del dateRange[0]
 
+        # Add Hootsuite Bulk Composer file
         with open(bulkComposerFile, 'a') as hbcFile:
             for randomDateTime, messages in hootsuitePlanner.items():
                 message = [randomDateTime, hoot.hootsuite_message(messages["TwitterHandle"], messages["Name"], messages["Link"]), messages["Link"]]

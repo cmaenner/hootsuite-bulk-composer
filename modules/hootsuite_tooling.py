@@ -1,9 +1,11 @@
 #! /usr/local/bin/python3
-__version__ = '0.1'
+__version__ = '0.2'
 __author__ = 'Chris Maenner'
 
+import csv
 import json
 import logging
+import random
 import sys
 from pathlib import Path
 
@@ -14,9 +16,17 @@ class HootsuiteBulkComposer():
         # Logging
         self.logger = logging.getLogger(__name__)
 
-    def hootsuite_message(self, name=False, link=False):
+        # Variables
+        self.delimiter = u"\u002c"
+        self.weekDays = {0: [], 1: [], 2: [], 3: [], 4: []}
+        self.hashtags = ' '.join(["#bsidesphilly", "#bsidesphillysponsors"])
+
+    def hootsuite_message(self, handle=False, name=False, link=False):
         """Generate dymanic message for Hootsuite"""
-        message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. Your contributions mean a lot! Please feel free to head over to {link} for details'
+        if handle:
+            message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. Your contributions mean a lot! Please feel free to head over to {link} for details {handle} {self.hashtags}'
+        else:
+            message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. Your contributions mean a lot! Please feel free to head over to {link} for details {self.hashtags}'
         return message
 
     def path_creation(self, outputDir):

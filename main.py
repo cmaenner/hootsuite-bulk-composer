@@ -1,5 +1,5 @@
 #! /usr/local/bin/python3
-__version__ = '0.1'
+__version__ = '0.2'
 __author__ = 'Chris Maenner'
 
 # Standard Library
@@ -10,6 +10,7 @@ import logging
 import pandas
 import random
 import sys
+from collections import OrderedDict
 from datetime import date
 
 # Custom Modules
@@ -25,9 +26,9 @@ parser.add_argument('-sT', '--template', default='./templates/sponsors.json', he
 parser.add_argument('-vK', '--validMessageKeys', default=["Link", "Name", "Tier", "TwitterHandle"], type=list, help='Valid message keys for template')
 parser.add_argument('-nod', '--numberOfDays', default=5, type=int, help='How many days messages are to post, starting from current day')
 parser.add_argument('-nom', '--numberOfMessages', default=5, type=int, help='How many messages posted per day')
-parser.add_argument('-oD', '--outputDir', default='/tmp/', type=str, help='Directory where the Hootsuite Builk Composer file is written to')
+parser.add_argument('-oD', '--outputDir', default='./tmp/', type=str, help='Directory where the Hootsuite Builk Composer file is written to')
 parser.add_argument('-oF', '--outputFileName', default='hbc', type=str, help='Name of the Hootsuite Builk Composer CSV file')
-
+parser.add_argument('-oT', '--outputFileType', default='csv', type=str, help='Name of the Hootsuite Builk Composer CSV file type')
 
 def main(sponsors=False):
     """Start ETL for Hootsuite Bulk Composer"""
@@ -36,14 +37,13 @@ def main(sponsors=False):
     args = parser.parse_args()
 
     # Variables
-    weekDays = {0: [], 1: [], 2: [], 3: [], 4: []}
-    delimiter = u"\u002c"
     formatter = '%(asctime)s %(levelname)s %(message)s'
     logLevel = logging.INFO
     messages = False
-    bulkComposerFile = f'{args.outputDir}{args.outputFileName}.csv'
-    dateRange = list(pandas.date_range(start='12/6/2018 09:00:00', end='12/6/2018 19:00:00', freq='15T'))
-    
+    bulkComposerFile = f'{args.outputDir}{args.outputFileName}.{args.outputFileType}'
+    dateRange = list(pandas.date_range(start='12/4/2018 08:00:00', end='12/4/2018 19:00:00', freq='30T'))
+    hootsuitePlanner = OrderedDict()
+
     # Turn on debugging
     if args.debug:
         logLevel = logging.DEBUG
@@ -65,28 +65,42 @@ def main(sponsors=False):
         hoot = HootsuiteBulkComposer()
         messages = hoot.verify_template(args.validMessageKeys, sponsors)
 
+    # List of all messages
     if isinstance(messages, list):
-        while messages:
-            with open(bulkComposerFile, 'a') as hootBulkComposerFile:
-                randomDateTime = str(random.choice(dateRange))
-                year, month, day = int(randomDateTime.split(' ')[0].split('-')[0]), int(randomDateTime.split(' ')[0].split('-')[1]), int(randomDateTime.split(' ')[0].split('-')[2])
-                dayOfWeek = date(year, month, day).weekday()
 
-                if int(messages[0]["Tier"]) == args.tiering:
-                    message = [randomDateTime, hoot.hootsuite_message(messages[0]["Name"], messages[0]["Link"]), messages[0]["Link"]]
-                    messageWriter = csv.writer(hootBulkComposerFile, delimiter=delimiter, lineterminator='\n')
-                    messageWriter.writerow(message)
-                    weekDays[dayOfWeek].append("x")
+        # Tiered lists
+        tierZero = [value for value in messages if int(value["Tier"]) in [0, 1]]
+        tierOne = [value for value in messages if int(value["Tier"]) in [0, 1, 2, 3]]
 
-                if len(weekDays[dayOfWeek]) == args.numberOfMessages:
-                    del messages[0]
+        # Loop through all 45 minute increments until inserted into dictionary
+        while dateRange:
+            
+            # Grab date/time
+            randomDateTime = str(dateRange[0])
 
-                try:
-                    threshold = len(weekDays[0]) + len(weekDays[1]) + len(weekDays[2]) + len(weekDays[3]) + len(weekDays[4])
-                except:
-                    threshold = 0
-                
-                if threshold == 25:
-                    break
+            # Grab random sponsor
+            message = random.choice(messages)
+            tierLevel = message["Tier"]
+
+            # Split date to get day of week in integer
+            year, month, day, hour, minute, second = int(randomDateTime.split(' ')[0].split('-')[0]), int(randomDateTime.split(' ')[0].split('-')[1]), int(randomDateTime.split(' ')[0].split('-')[2]), int(randomDateTime.split(' ')[1].split(':')[0]), int(randomDateTime.split(' ')[1].split(':')[1]), int(randomDateTime.split(' ')[1].split(':')[2])
+            dayOfWeek = date(year, month, day).weekday()
+
+            # Unique date/time of dictionary
+            if hour in [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]:
+                hootsuitePlanner[randomDateTime] = {}
+
+                # Create dictionary of unique date/time
+                for key in args.validMessageKeys:
+                    hootsuitePlanner[randomDateTime][key] = message[key]
+
+            # Delete object from list
+            del dateRange[0]
+
+        with open(bulkComposerFile, 'a') as hbcFile:
+            for randomDateTime, messages in hootsuitePlanner.items():
+                message = [randomDateTime, hoot.hootsuite_message(messages["TwitterHandle"], messages["Name"], messages["Link"]), messages["Link"]]
+                messageWriter = csv.writer(hbcFile, delimiter=hoot.delimiter, lineterminator='\n')
+                messageWriter.writerow(message)
 
 if __name__=="__main__": main()

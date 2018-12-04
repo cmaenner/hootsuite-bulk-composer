@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Other
+./tmp/*.csv
+.DS_Store

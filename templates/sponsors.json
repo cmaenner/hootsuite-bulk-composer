@@ -3,18 +3,48 @@
         "Link": "https://www.accessitgroup.com",
         "Name": "AccessIT Group",
         "Tier": 0,
-        "TwitterHandle": "AccessITGroup"
+        "TwitterHandle": "@AccessITGroup"
     },
     {
         "Link": "https://drexel.edu",
         "Name": "Drexel University",
         "Tier": 0,
-        "TwitterHandle": "DrexelUniv"
+        "TwitterHandle": "@DrexelUniv"
     },
     {
         "Link": "http://www.securityriskadvisors.com",
         "Name": "Security Risk Advisors",
         "Tier": 0,
-        "TwitterHandle": "secrisk"
+        "TwitterHandle": "@secrisk"
+    },
+    {
+        "Link": "https://www.linode.com",
+        "Name": "Linode",
+        "Tier": 1,
+        "TwitterHandle": "@linode"
+    },
+    {
+        "Link": "https://appalachiatech.com",
+        "Name": "Appalachia Technology",
+        "Tier": 2,
+        "TwitterHandle": "@AppalachiaTech"
+    },
+    {
+        "Link": "https://www.paloaltonetworks.com/",
+        "Name": "Palo Alto Networks",
+        "Tier": 2,
+        "TwitterHandle": "@PaloAltoNtwks"
+    },
+    {
+        "Link": "https://phillycyberalliance.org/",
+        "Name": "Philadelphia Cyber Education Alliance",
+        "Tier": 3,
+        "TwitterHandle": ""
+    },
+    {
+        "Link": "https://nostarch.com/",
+        "Name": "No Starch Press",
+        "Tier": 3,
+        "TwitterHandle": "@nostarch"
     }
 ]

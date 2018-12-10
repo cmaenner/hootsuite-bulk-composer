@@ -24,16 +24,34 @@
         "TwitterHandle": "@linode"
     },
     {
+        "Link": "https://www.ittakesahuman.com",
+        "Name": "Point3",
+        "Tier": 1,
+        "TwitterHandle": "@point3sec"
+    },
+    {
         "Link": "https://appalachiatech.com",
         "Name": "Appalachia Technology",
         "Tier": 2,
         "TwitterHandle": "@AppalachiaTech"
     },
     {
-        "Link": "https://www.paloaltonetworks.com/",
+        "Link": "https://www.paloaltonetworks.com",
         "Name": "Palo Alto Networks",
         "Tier": 2,
         "TwitterHandle": "@PaloAltoNtwks"
+    },
+    {
+        "Link": "https://www.kennasecurity.com",
+        "Name": "Kenna Security",
+        "Tier": 2,
+        "TwitterHandle": "@KennaSecurity"
+    },
+    {
+        "Link": "https://www.corebts.com",
+        "Name": "CoreBTS",
+        "Tier": 2,
+        "TwitterHandle": "@corebts"
     },
     {
         "Link": "https://phillycyberalliance.org/",

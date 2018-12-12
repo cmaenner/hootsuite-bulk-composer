@@ -1,5 +1,5 @@
 #! /usr/local/bin/python3
-__version__ = '0.3'
+__version__ = '0.4'
 __author__ = 'Chris Maenner'
 
 # Standard Library
@@ -38,7 +38,7 @@ def main(sponsors=False):
 
     # Variables
     bulkComposerFile = f'{args.outputDir}{args.outputFileName}.{args.outputFileType}'
-    dateRange = list(pandas.date_range(start='12/5/2018 08:00:00', end='12/10/2018 19:00:00', freq='30T'))
+    dateRange = list(pandas.date_range(start='12/17/2018 08:00:00', end='12/17/2018 19:00:00', freq='30T'))
     formatter = '%(asctime)s %(levelname)s %(message)s'
     logLevel = logging.INFO
     
@@ -78,14 +78,25 @@ def main(sponsors=False):
             sys.exit(1)
 
         # Loop through all 45 minute increments until inserted into dictionary
-        while dateRange:
+        while messages and dateRange:
 
             # Grab date/time
             randomDateTime = str(dateRange[0])
 
             # Grab random sponsor
             message = random.choice(messages)
-            tierLevel = int(message["Tier"])
+
+            # Get name of sponsor
+            try:
+                name = message["Name"]
+            except:
+                name = False
+
+            # Make tier into integer
+            try:
+                tierLevel = int(message["Tier"])
+            except:
+                tierLevel = False
 
             # Split date to get day of week in integer
             year, month, day, hour, minute, second = int(randomDateTime.split(' ')[0].split('-')[0]), int(randomDateTime.split(' ')[0].split('-')[1]), int(randomDateTime.split(' ')[0].split('-')[2]), int(randomDateTime.split(' ')[1].split(':')[0]), int(randomDateTime.split(' ')[1].split(':')[1]), int(randomDateTime.split(' ')[1].split(':')[2])
@@ -93,8 +104,20 @@ def main(sponsors=False):
             # Return day of week as integer (0=Monday, 6=Sunday),
             dayOfWeek = date(year, month, day).weekday()
 
+            # Verify name exists and was validated
+            if isinstance(name, str):
+                try:
+                    nameValidCount = len(hoot.weekDays[dayOfWeek][name])
+                except:
+                    nameValidCount = 0
+
             # Start creating dictionary of unique date/time objects
-            hoot.hootsuite_planner(tierLevel, tiering, hour, tierByHours, dayOfWeek, args.validMessageKeys, randomDateTime, message)
+            if nameValidCount < 3:
+                hoot.hootsuite_planner(tierLevel, tiering, hour, tierByHours, dayOfWeek, args.validMessageKeys, randomDateTime, message)
+
+            # Create dictionary of completed sponsors to cut back on max posts per day
+            if len(hoot.name) > 0 and dayOfWeek in [0, 1, 2, 3, 4]:
+                hoot.validate_sponsor(dayOfWeek)
 
             # Delete object from list
             del dateRange[0]

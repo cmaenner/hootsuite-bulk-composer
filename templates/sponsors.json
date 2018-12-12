@@ -1,5 +1,11 @@
 [
     {
+        "Link": "https://corporate.comcast.com/",
+        "Name": "Comcast",
+        "Tier": 0,
+        "TwitterHandle": "@comcast"
+    },
+    {
         "Link": "https://www.accessitgroup.com",
         "Name": "AccessIT Group",
         "Tier": 0,
@@ -18,10 +24,28 @@
         "TwitterHandle": "@secrisk"
     },
     {
+        "Link": "https://sig.com",
+        "Name": "Susquehanna International Group",
+        "Tier": "",
+        "TwitterHandle": ""
+    },
+    {
         "Link": "https://www.linode.com",
         "Name": "Linode",
         "Tier": 1,
         "TwitterHandle": "@linode"
+    },
+    {
+        "Link": "https://www.checkpoint.com/",
+        "Name": "CheckPoint",
+        "Tier": 1,
+        "TwitterHandle": "@checkpointsw"
+    },
+    {
+        "Link": "https://www.cylance.com",
+        "Name": "Cylance",
+        "Tier": "",
+        "TwitterHandle": "@cylanceinc"
     },
     {
         "Link": "https://appalachiatech.com",

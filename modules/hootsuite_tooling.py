@@ -1,5 +1,5 @@
 #! /usr/local/bin/python3
-__version__ = '0.3'
+__version__ = '0.4'
 __author__ = 'Chris Maenner'
 
 import csv
@@ -19,9 +19,20 @@ class HootsuiteBulkComposer():
 
         # Variables
         self.delimiter = u"\u002c"
-        self.weekDays = {0: [], 1: [], 2: [], 3: [], 4: []}
+        self.weekDays = {0: {}, 1: {}, 2: {}, 3: {}, 4: {}}
         self.hashtags = ' '.join(["#bsidesphilly", "#bsidesphillysponsors"])
-        self.hootsuitePlanner = OrderedDict()
+        # self.hootsuitePlanner = OrderedDict()
+        self.hootsuitePlanner = {}
+        self.name = ""
+
+    def validate_sponsor(self, dayOfWeek, validator=False):
+        """Validate number of times sponsor was tagged for post"""
+        try:
+            validator = self.weekDays[dayOfWeek][self.name]
+        except:
+            self.weekDays[dayOfWeek][self.name] = []
+        if isinstance(validator, list) and len(validator) < 2:
+            self.weekDays[dayOfWeek][self.name].append(0)
 
     def hootsuite_message(self, handle=False, name=False, link=False):
         """Generate dymanic message for Hootsuite"""
@@ -60,10 +71,17 @@ class HootsuiteBulkComposer():
             return
 
         # Run list generator to verify valid keys in template
-        return [{validKey: self.verify_template_object(validKey, message) for validKey in verifiedKeys for key, value in message.items()} for message in messages]
+        try:
+            validMessages = [{validKey: self.verify_template_object(validKey, message) for validKey in verifiedKeys for key, value in message.items()} for message in messages if isinstance(message["Tier"], int)]
+        except:
+            validMessages = [{validKey: self.verify_template_object(validKey, message) for validKey in verifiedKeys for key, value in message.items()} for message in messages]
+
+        # Return valid messages
+        return validMessages
 
     def hootsuite_planner(self, tierLevel, tiering, hour, tierByHours, dayOfWeek, validMessageKeys, randomDateTime, message):
         """Create ordered dictionary of date/time objects"""
+
         # Tier 0 & 1 sponsorship for Mon, Wed, Thur, Fri
         if tierLevel in tiering[0] and hour in tierByHours[0] and dayOfWeek in [0, 2, 3, 4]:
             self.hootsuitePlanner[randomDateTime] = {}
@@ -71,6 +89,10 @@ class HootsuiteBulkComposer():
             # Create dictionary of unique date/time
             for key in validMessageKeys:
                 self.hootsuitePlanner[randomDateTime][key] = message[key]
+
+                # Get name of object
+                if key in ["Name"]:
+                    self.name = message[key]
 
         # Tier 2 sponsorship for Tues, Thur, Fri
         if tierLevel in tiering[1] and hour in tierByHours[1] and dayOfWeek in [1, 3, 4]:
@@ -80,6 +102,10 @@ class HootsuiteBulkComposer():
             for key in validMessageKeys:
                 self.hootsuitePlanner[randomDateTime][key] = message[key]
 
+                # Get name of object
+                if key in ["Name"]:
+                    self.name = message[key]
+
         # Tier 3 sponsorship for Tues, Wed, Thur
         if tierLevel in tiering[2] and hour in tierByHours[2] and dayOfWeek in [1, 3]:
             self.hootsuitePlanner[randomDateTime] = {}
@@ -87,3 +113,7 @@ class HootsuiteBulkComposer():
             # Create dictionary of unique date/time
             for key in validMessageKeys:
                 self.hootsuitePlanner[randomDateTime][key] = message[key]
+
+                # Get name of object
+                if key in ["Name"]:
+                    self.name = message[key]

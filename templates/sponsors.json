@@ -26,7 +26,7 @@
     {
         "Link": "https://sig.com",
         "Name": "Susquehanna International Group",
-        "Tier": "",
+        "Tier": 1,
         "TwitterHandle": ""
     },
     {
@@ -44,7 +44,7 @@
     {
         "Link": "https://www.cylance.com",
         "Name": "Cylance",
-        "Tier": "",
+        "Tier": 2,
         "TwitterHandle": "@cylanceinc"
     },
     {

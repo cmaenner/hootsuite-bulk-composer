@@ -13,7 +13,7 @@ from pathlib import Path
 class HootsuiteBulkComposer():
     def __init__(self):
         """Class to work with Hootsuite Tools"""
-        
+
         # Logging
         self.logger = logging.getLogger(__name__)
 
@@ -21,12 +21,12 @@ class HootsuiteBulkComposer():
         self.delimiter = u"\u002c"
         self.weekDays = {0: {}, 1: {}, 2: {}, 3: {}, 4: {}}
         self.hashtags = ' '.join(["#bsidesphilly", "#bsidesphillysponsors"])
-        # self.hootsuitePlanner = OrderedDict()
-        self.hootsuitePlanner = {}
+        self.hootsuitePlanner = OrderedDict()
         self.name = ""
 
     def validate_sponsor(self, dayOfWeek, validator=False):
         """Validate number of times sponsor was tagged for post"""
+
         try:
             validator = self.weekDays[dayOfWeek][self.name]
         except:
@@ -36,7 +36,10 @@ class HootsuiteBulkComposer():
 
     def hootsuite_message(self, handle=False, name=False, link=False):
         """Generate dymanic message for Hootsuite"""
-        if handle:
+
+        if name == "Point3":
+            message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3 as well as supporting our CTF this year. Registration for the CTF will be provided at the conference. Head over to {link} for details {handle} {self.hashtags[1]}'
+        elif handle:
             message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. Your contributions mean a lot! Please feel free to head over to {link} for details {handle} {self.hashtags}'
         else:
             message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. Your contributions mean a lot! Please feel free to head over to {link} for details {self.hashtags}'

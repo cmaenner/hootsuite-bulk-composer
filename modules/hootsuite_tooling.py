@@ -1,5 +1,5 @@
 #! /usr/local/bin/python3
-__version__ = '0.3'
+__version__ = '0.4'
 __author__ = 'Chris Maenner'
 
 import csv
@@ -25,7 +25,9 @@ class HootsuiteBulkComposer():
 
     def hootsuite_message(self, handle=False, name=False, link=False):
         """Generate dymanic message for Hootsuite"""
-        if handle:
+        if name in ["Point3"]:
+            message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3 as well as supporting our CTF this year. Please register at https://www.bsidesphilly.org/ctf and dont forget your computer. Head over to {link} for details about {handle} {self.hashtags[1]}'
+        elif handle:
             message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. Your contributions mean a lot! Please feel free to head over to {link} for details {handle} {self.hashtags}'
         else:
             message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. Your contributions mean a lot! Please feel free to head over to {link} for details {self.hashtags}'

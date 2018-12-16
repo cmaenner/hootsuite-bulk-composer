@@ -1,5 +1,5 @@
 #! /usr/local/bin/python3
-__version__ = '0.3'
+__version__ = '0.4'
 __author__ = 'Chris Maenner'
 
 # Standard Library
@@ -38,7 +38,7 @@ def main(sponsors=False):
 
     # Variables
     bulkComposerFile = f'{args.outputDir}{args.outputFileName}.{args.outputFileType}'
-    dateRange = list(pandas.date_range(start='12/5/2018 08:00:00', end='12/10/2018 19:00:00', freq='30T'))
+    dateRange = list(pandas.date_range(start='12/24/2018 08:00:00', end='12/24/2018 19:00:00', freq='30T'))
     formatter = '%(asctime)s %(levelname)s %(message)s'
     logLevel = logging.INFO
     

@@ -27,6 +27,10 @@ class HootsuiteBulkComposer():
         """Generate dymanic message for Hootsuite"""
         if name in ["Point3"]:
             message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3 as well as supporting our CTF this year. Registration for the CTF will be held at the conference. Head over to {link} for details about {handle} {self.hashtags[1]}'
+        elif name in ["AccessIT Group"]:
+            message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. {name} helps organizations design, develop, and drive their cyber security systems. Head over to {link} for details about {handle} {self.hashtags[1]}'
+        elif name in ["Check Point Software Technologies Ltd."]:
+            message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. {name} is a leading provider of cyber security solutions to corporate enterprises and governments globally. Its solutions protect customers from 5th-generation cyber-attacks with an industry leading catch rate of malware, ransomware and other targeted attacks. Head over to {link} for details about {handle} {self.hashtags[1]}'
         elif handle:
             message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. Your contributions mean a lot! Please feel free to head over to {link} for details {handle} {self.hashtags}'
         else:

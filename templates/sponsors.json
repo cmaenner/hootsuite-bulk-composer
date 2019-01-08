@@ -1,15 +1,15 @@
 [
     {
-        "Link": "https://corporate.comcast.com",
-        "Name": "Comcast",
-        "Tier": 0,
-        "TwitterHandle": "@comcast"
-    },
-    {
         "Link": "https://www.accessitgroup.com",
         "Name": "AccessIT Group",
         "Tier": 0,
         "TwitterHandle": "@AccessITGroup"
+    },
+    {
+        "Link": "https://corporate.comcast.com",
+        "Name": "Comcast",
+        "Tier": 0,
+        "TwitterHandle": "@comcast"
     },
     {
         "Link": "https://drexel.edu",
@@ -24,16 +24,28 @@
         "TwitterHandle": "@secrisk"
     },
     {
+        "Link": "https://www.checkpoint.com",
+        "Name": "Checkpoint",
+        "Tier": 1,
+        "TwitterHandle": "@checkpointsw"
+    },
+    {
+        "Link": "https://www.crowdstrike.com",
+        "Name": "CrowdStrike",
+        "Tier": 1,
+        "TwitterHandle": "@CrowdStrike"
+    },
+    {
         "Link": "https://www.linode.com",
         "Name": "Linode",
         "Tier": 1,
         "TwitterHandle": "@linode"
     },
     {
-        "Link": "https://www.ittakesahuman.com",
-        "Name": "Point3",
+        "Link": "https://sig.com",
+        "Name": "SIG Susquehanna",
         "Tier": 1,
-        "TwitterHandle": "@point3sec"
+        "TwitterHandle": ""
     },
     {
         "Link": "https://appalachiatech.com",
@@ -42,10 +54,16 @@
         "TwitterHandle": "@AppalachiaTech"
     },
     {
-        "Link": "https://www.paloaltonetworks.com",
-        "Name": "Palo Alto Networks",
+        "Link": "https://www.corebts.com",
+        "Name": "CoreBTS",
         "Tier": 2,
-        "TwitterHandle": "@PaloAltoNtwks"
+        "TwitterHandle": "@corebts"
+    },
+    {
+        "Link": "https://www.f5.com",
+        "Name": "F5 Networks",
+        "Tier": 2,
+        "TwitterHandle": "@f5networks"
     },
     {
         "Link": "https://www.kennasecurity.com",
@@ -54,16 +72,22 @@
         "TwitterHandle": "@KennaSecurity"
     },
     {
-        "Link": "https://www.corebts.com",
-        "Name": "CoreBTS",
+        "Link": "https://www.paloaltonetworks.com",
+        "Name": "Palo Alto Networks",
         "Tier": 2,
-        "TwitterHandle": "@corebts"
+        "TwitterHandle": "@PaloAltoNtwks"
     },
     {
-        "Link": "https://phillycyberalliance.org/",
-        "Name": "Philadelphia Cyber Education Alliance",
-        "Tier": 3,
-        "TwitterHandle": ""
+        "Link": "https://www.ittakesahuman.com",
+        "Name": "Point3",
+        "Tier": 2,
+        "TwitterHandle": "@point3sec"
+    },
+    {
+         "Link": "https://phillycyberalliance.org/",
+         "Name": "Philadelphia Cyber Education Alliance",
+         "Tier": 3,
+         "TwitterHandle": ""
     },
     {
         "Link": "https://nostarch.com/",

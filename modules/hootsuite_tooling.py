@@ -1,5 +1,5 @@
 #! /usr/local/bin/python3
-__version__ = '0.4'
+__version__ = '0.5'
 __author__ = 'Chris Maenner'
 
 import csv
@@ -9,6 +9,7 @@ import random
 import sys
 from collections import OrderedDict
 from pathlib import Path
+from pprint import pprint
 
 class HootsuiteBulkComposer():
     def __init__(self):
@@ -22,15 +23,17 @@ class HootsuiteBulkComposer():
         self.weekDays = {0: [], 1: [], 2: [], 3: [], 4: []}
         self.hashtags = ' '.join(["#bsidesphilly", "#bsidesphillysponsors"])
         self.hootsuitePlanner = OrderedDict()
+        self.hspCounter = {}
+
+    def hootsuite_bulk_composer_generator(self, dateRange):
+        """Create object of scheduled posts"""
+        for key in dateRange:
+            self.hootsuitePlanner[str(key)] = {}
 
     def hootsuite_message(self, handle=False, name=False, link=False):
         """Generate dymanic message for Hootsuite"""
         if name in ["Point3"]:
             message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3 as well as supporting our CTF this year. Registration for the CTF will be held at the conference. Head over to {link} for details about {handle} {self.hashtags[1]}'
-        elif name in ["AccessIT Group"]:
-            message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. {name} helps organizations design, develop, and drive their cyber security systems. Head over to {link} for details about {handle} {self.hashtags[1]}'
-        elif name in ["Check Point Software Technologies Ltd."]:
-            message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. {name} is a leading provider of cyber security solutions to corporate enterprises and governments globally. Its solutions protect customers from 5th-generation cyber-attacks with an industry leading catch rate of malware, ransomware and other targeted attacks. Head over to {link} for details about {handle} {self.hashtags[1]}'
         elif handle:
             message = f'The community would like to thank {name} for sponsoring BSidesPhilly 3. Your contributions mean a lot! Please feel free to head over to {link} for details {handle} {self.hashtags}'
         else:
@@ -62,34 +65,68 @@ class HootsuiteBulkComposer():
     def verify_template(self, verifiedKeys, messages, index=0):
         """Check to see if valid keys exist"""
 
+        # Return if message is not a list
         if not isinstance(messages, list):
             return
 
         # Run list generator to verify valid keys in template
         return [{validKey: self.verify_template_object(validKey, message) for validKey in verifiedKeys for key, value in message.items()} for message in messages]
 
-    def hootsuite_planner(self, tierLevel, tiering, hour, tierByHours, dayOfWeek, validMessageKeys, randomDateTime, message):
+    def hootsuite_planner_insert(self, randomDateTime, sponsorName, validMessageKeys, message):
+        """Insert sponsor into dictionary to prepare Hootsuite Planner"""
+
+        # Insert sponsor name
+        self.hootsuitePlanner[randomDateTime][sponsorName] = {}
+
+        # Create dictionary of unique date/time
+        for key in validMessageKeys:
+                self.hootsuitePlanner[randomDateTime][sponsorName][key] = message[key]
+
+    def hootsuite_planner(self, tierLevel, tiering, hour, tierByHours, dayOfWeek, validMessageKeys, randomDateTime, message, randomYMD, sponsorName="", valid=True):
         """Create ordered dictionary of date/time objects"""
-        # Tier 0 & 1 sponsorship for Mon, Wed, Thur, Fri
-        if tierLevel in tiering[0] and hour in tierByHours[0] and dayOfWeek in [0, 2, 3, 4]:
-            self.hootsuitePlanner[randomDateTime] = {}
 
-            # Create dictionary of unique date/time
-            for key in validMessageKeys:
-                self.hootsuitePlanner[randomDateTime][key] = message[key]
+        # Check to see if date & time value was updated
+        if len(self.hootsuitePlanner[randomDateTime].keys()) > 0:
+            return False
 
-        # Tier 2 sponsorship for Tues, Thur, Fri
-        if tierLevel in tiering[1] and hour in tierByHours[1] and dayOfWeek in [1, 3, 4]:
-            self.hootsuitePlanner[randomDateTime] = {}
+        # Get sponsor name
+        try:
+            sponsorName = message["Name"]
+        except Exception as error:
+            self.logger.error(f'Please check to see if the "Name" key is in "./templates/sponsors.json": {error}')
+            return False
 
-            # Create dictionary of unique date/time
-            for key in validMessageKeys:
-                self.hootsuitePlanner[randomDateTime][key] = message[key]
+        # Keep track of posts per day
+        if randomYMD not in [ymd.split(" ")[0] for ymd in self.hspCounter.keys()]:
+            try:
+                self.hspCounter[randomYMD] = {}
+            except:
+                pass
 
-        # Tier 3 sponsorship for Tues, Wed, Thur
-        if tierLevel in tiering[2] and hour in tierByHours[2] and dayOfWeek in [1, 3]:
-            self.hootsuitePlanner[randomDateTime] = {}
+        # Check to see if sponsor was added to threshold counter
+        try:
+            sponsorNameList = self.hspCounter[randomYMD][sponsorName]
+        except:
+            sponsorNameList = False
 
-            # Create dictionary of unique date/time
-            for key in validMessageKeys:
-                self.hootsuitePlanner[randomDateTime][key] = message[key]
+        # Create new sponsor threshold counter object
+        if isinstance(sponsorNameList, bool):
+            self.hspCounter[randomYMD][sponsorName] = []
+
+        # Add counter for sponsor threshold counter object
+        self.hspCounter[randomYMD][sponsorName].append(0)
+
+        # Sponsors threshold was met for the day
+        if len(self.hspCounter[randomYMD][sponsorName]) > 2:
+            return False
+
+        # Tier 3 sponsorship for Tues, Thur
+        if tierLevel in tiering[1] and hour in tierByHours[1] and dayOfWeek in [1, 3]:
+            # Insert sponsor name
+            self.hootsuite_planner_insert(randomDateTime, sponsorName, validMessageKeys, message)
+        else:
+            # Insert sponsor name
+            self.hootsuite_planner_insert(randomDateTime, sponsorName, validMessageKeys, message)
+
+        # Return boolean statement to remove value from list
+        return valid

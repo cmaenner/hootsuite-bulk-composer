@@ -1,5 +1,5 @@
 #! /usr/local/bin/python3
-__version__ = '0.5'
+__version__ = '0.6'
 __author__ = 'Chris Maenner'
 
 # Standard Library
@@ -11,6 +11,8 @@ import pandas
 import random
 import sys
 from datetime import date, datetime
+from pprint import pprint
+from modules.create_template import CreateTemplates
 
 # Custom Modules
 from modules.hootsuite_tooling import HootsuiteBulkComposer
@@ -21,7 +23,7 @@ parser = argparse.ArgumentParser(prog='main.py', usage='python %(prog)s', descri
 # Optional arguements
 parser.add_argument('-d', '--debug', action='store_true', help='Turn on debug mode')
 parser.add_argument('-t', '--tiering', default=0, type=int, help='Specify tier to generate dates')
-parser.add_argument('-sT', '--template', default='./templates/sponsors.json', help='Specify which template to use')
+parser.add_argument('-sT', '--template', nargs='+', default=["./templates/sponsors.json", "./templates/speakers.json"], help='Specify which template to use')
 parser.add_argument('-vK', '--validMessageKeys', default=["Link", "Name", "Tier", "TwitterHandle"], type=list, help='Valid message keys for template')
 parser.add_argument('-nod', '--numberOfDays', default=5, type=int, help='How many days messages are to post, starting from current day')
 parser.add_argument('-nom', '--numberOfMessages', default=5, type=int, help='How many messages posted per day')
@@ -35,12 +37,16 @@ def main(sponsors=False):
     # Class variables
     args = parser.parse_args()
     hoot = HootsuiteBulkComposer()
+    templates = CreateTemplates(args.template)
 
     # Variables
-    dateRange = list(pandas.date_range(start='1/11/2019 08:00:00', end='1/11/2019 19:00:00', freq='30T'))
+    dateRange = list(pandas.date_range(start='1/25/2019 08:00:00', end='1/25/2019 19:00:00', freq='30T'))
     formatter = '%(asctime)s %(levelname)s %(message)s'
     logLevel = logging.INFO
-    
+
+    # Generate template dictionary
+    templates.create()
+
     # Hour to be posted by tiering
     tierByHours = [[8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19], [9, 12, 15]]
 
@@ -52,13 +58,9 @@ def main(sponsors=False):
     logging.basicConfig(format=formatter, datefmt='%m/%d/%Y %I:%M:%S %p', stream=sys.stdout, level=logLevel)
     logging.getLogger(__name__)
 
-    # Load Sponsors JSON file
-    try:
-        with open(args.template) as template:
-            sponsors = json.load(template)
-    except Exception as error:
-        logging.error(f'Check to see if the following template is available {args.template}: {error}')
-        sys.exit(1)
+    # Create list of template keys
+    mstrTemplKeys = templates.templateKeys
+    templateLookup = templates.loadedTemplates
 
     # Create Hootsuite Bulk Composer dictionary
     if isinstance(sponsors, list):

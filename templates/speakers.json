@@ -1,0 +1,173 @@
+[
+    {
+        "Name": "Alec Dascani",
+        "Url": "https://www.bsidesphilly.org/speaker/alec-dascani",
+        "CompanyName": "Susquehanna International Group",
+        "CompanyUrl": "https://sig.com",
+        "SpeakName": "Streamlining SOC Workflows with Homegrown Tools",
+        "SpeakTime": "09:00-09:50",
+        "SpeakRoom": "Constitution Hall"
+    },
+    {
+        "Name": "David Branscome",
+        "Url": "https://www.bsidesphilly.org/speaker/david-branscome",
+        "CompanyName": "Microsoft Partners",
+        "CompanyUrl": "https://partner.microsoft.com",
+        "SpeakName": "Extracting the Attacker: Getting the Bad Guys off Your SaaS",
+        "SpeakTime": "11:00-11:50",
+        "SpeakRoom": "Congress Hall"
+    },
+    {
+        "Name": "Evan Dornbush",
+        "Url": "https://www.bsidesphilly.org/speaker/evan-dornbush-2",
+        "CompanyName": "Point3",
+        "CompanyUrl": "https://www.ittakesahuman.com",
+        "SpeakName": "Ready Player 0x01: How Gamified Ecosystems Will Save Us All",
+        "SpeakTime": "15:00-15:50",
+        "SpeakRoom": "Congress Hall"
+    },
+    {
+        "Name": "John Ehring",
+        "Url": "https://www.bsidesphilly.org/speaker/john-ehring",
+        "CompanyName": "Accenture Security",
+        "CompanyUrl": "https://www.accenture.com/us-en/security-index",
+        "SpeakName": "Unlocking Potential - Maturing the SIEM from Basic to Advanced Capabilities",
+        "SpeakTime": "08:00-08:50",
+        "SpeakRoom": "Constitution Hall"
+    },
+    {
+        "Name": "Kevin Foster",
+        "Url": "https://www.bsidesphilly.org/speaker/kevin-foster",
+        "CompanyName": "Security Risk Advisors",
+        "CompanyUrl": "https://www.securityriskadvisors.com",
+        "SpeakName": "Keeping up with the Joneses: SIEM Rules Edition",
+        "SpeakTime": "10:00-10:50",
+        "SpeakRoom": "Constitution Hall"
+    },
+    {
+        "Name": "Justin Klein Keane",
+        "Url": "https://www.bsidesphilly.org/speaker/justin-klein-keane",
+        "CompanyName": "",
+        "CompanyUrl": "",
+        "SpeakName": "Next Generation Blue Team",
+        "SpeakTime": "16:00-16:50",
+        "SpeakRoom": "Constitution Hall"
+    },
+    {
+        "Name": "Matt Chiodi",
+        "Url": "https://www.bsidesphilly.org/speaker/matt-chiodi",
+        "CompanyName": "Palo Alto Networks",
+        "CompanyUrl": "https://www.paloaltonetworks.com",
+        "SpeakName": "Don’t Get Jacked: 4 Steps To Protecting Your XaaS in the Cloud",
+        "SpeakTime": "16:00-16:50",
+        "SpeakRoom": "Congress Hall"
+    },
+    {
+        "Name": "Matthew Gracie",
+        "Url": "https://www.bsidesphilly.org/speaker/matthew-gracie",
+        "CompanyName": "Bluecross Blueshield",
+        "CompanyUrl": "https://www.bcbs.com",
+        "SpeakName": "The TIP of the Stinger: Efficiently Using Threat Intelligence With TheHive",
+        "SpeakTime": "11:00-11:50",
+        "SpeakRoom": "Constitution Hall"
+    },
+    {
+        "Name": "Nick Ascoli",
+        "Url": "https://www.bsidesphilly.org/speaker/nick-ascoli",
+        "CompanyName": "Security Risk Advisors",
+        "CompanyUrl": "https://securityriskadvisors.com",
+        "SpeakName": "Keeping up with the Joneses: SIEM Rules Edition",
+        "SpeakTime": "10:00-10:50",
+        "SpeakRoom": "Constitution Hall"
+    },
+    {
+        "Name": "Tomer Hadad",
+        "Url": "https://www.bsidesphilly.org/speaker/tomer-hadad",
+        "CompanyName": "Ernst & Young",
+        "CompanyUrl": "https://www.ey.com/en_gl",
+        "SpeakName": "Controlling the View Controllers in iOS Applications – Automatically",
+        "SpeakTime": "14:00-14:50",
+        "SpeakRoom": "Congress Hall"
+    },
+    {
+        "Name": "Aelon Porat Porat",
+        "Url": "https://www.bsidesphilly.org/speaker/aelon-porat-porat",
+        "CompanyName": "Cision",
+        "CompanyUrl": "https://www.cision.com",
+        "SpeakName": "A Desktop Security Journey that Ends (for now) with Qubes OS",
+        "SpeakTime": "08:00-08:50",
+        "SpeakRoom": "Congress Hall"
+    },
+    {
+        "Name": "Alex Muentz",
+        "Url": "https://www.bsidesphilly.org/speaker/alex-muentz",
+        "CompanyName": "Leviathan Security Group",
+        "CompanyUrl": "https://www.leviathansecurity.com",
+        "SpeakName": "Starting and Progressing your Cybersecurity Career: How to Get Your First Job and Your Next One",
+        "SpeakTime": "09:00-09:50",
+        "SpeakRoom": "Congress Hall"
+    },
+    {
+        "Name": "Charles Sgrillo",
+        "Url": "https://www.bsidesphilly.org/speaker/charles-sgrillo",
+        "CompanyName": "Kreischer Miller",
+        "CompanyUrl": "https://www.kmco.com",
+        "SpeakName": "Introduction to BTLE: Assessing with Ubertooth One and Exploiting IoT",
+        "SpeakTime": "14:00-14:50",
+        "SpeakRoom": "Constitution Hall"
+    },
+    {
+        "Name": "Chris Lee",
+        "Url": "https://www.bsidesphilly.org/speaker/christopher-lee",
+        "CompanyName": "Susquehanna International Group",
+        "CompanyUrl": "https://sig.com",
+        "SpeakName": "Streamlining SOC Workflows with Homegrown Tools",
+        "SpeakTime": "09:00-09:50",
+        "SpeakRoom": "Constitution Hall"
+    },
+    {
+        "Name": "Ian Sinderman",
+        "Url": "https://www.bsidesphilly.org/speaker/ian-sinderman",
+        "CompanyName": "Independent Security Evaluators",
+        "CompanyUrl": "https://www.securityevaluators.com",
+        "SpeakName": "Journey to Command Injection: Hacking the Lenovo ix4-300d",
+        "SpeakTime": "10:00-10:50",
+        "SpeakRoom": "Congress Hall"
+    },
+    {
+        "Name": "Jim Menkevich",
+        "Url": "https://www.bsidesphilly.org/speaker/jim-menkevich",
+        "CompanyName": "Health Partners Plans",
+        "CompanyUrl": "https://www.healthpartnersplans.com",
+        "SpeakName": "O365 - Navigate the Rabbit Hole",
+        "SpeakTime": "13:00-13:50",
+        "SpeakRoom": "Congress Hall"
+    },
+    {
+        "Name": "Lenny Zeltser",
+        "Url": "https://www.bsidesphilly.org/speaker/lenny-zeltser",
+        "CompanyName": "Minerva",
+        "CompanyUrl": "https://minerva-labs.com",
+        "SpeakName": "Evasion Tactics in Malware from the Inside Out",
+        "SpeakTime": "13:00-13:50",
+        "SpeakRoom": "Constitution Hall"
+    },
+    {
+        "Name": "Sean Smith",
+        "Url": "https://www.bsidesphilly.org/speaker/sean-smith",
+        "CompanyName": "Securityscorecard",
+        "CompanyUrl": "https://securityscorecard.com",
+        "SpeakName": "From The Outside In: What the Internet Knows about your Digital Footprint",
+        "SpeakTime": "15:00-15:50",
+        "SpeakRoom": "Constitution Hall"
+    },
+    {
+        "Name": "Ty Tucker",
+        "Url": "https://www.bsidesphilly.org/speaker/ty-tucker",
+        "CompanyName": "Kforce",
+        "CompanyUrl": "https://www.kforce.com",
+        "SpeakName": "Starting and Progressing your Cybersecurity Career :How to Get Your First Job and Your Next One",
+        "SpeakTime": "09:00-09:50",
+        "SpeakRoom": "Congress Hall"
+    }
+]

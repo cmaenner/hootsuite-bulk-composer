@@ -1,5 +1,5 @@
 #! /usr/local/bin/python3
-__version__ = '0.6'
+__version__ = '0.6.1'
 __author__ = 'Chris Maenner'
 
 # Standard Library
@@ -40,7 +40,7 @@ def main(sponsors=False):
     templates = CreateTemplates(args.template)
 
     # Variables
-    dateRange = list(pandas.date_range(start='1/25/2019 08:00:00', end='1/25/2019 19:00:00', freq='30T'))
+    dateRange = list(pandas.date_range(start='1/28/2019 08:00:00', end='1/28/2019 19:00:00', freq='30T'))
     formatter = '%(asctime)s %(levelname)s %(message)s'
     logLevel = logging.INFO
 
@@ -58,9 +58,8 @@ def main(sponsors=False):
     logging.basicConfig(format=formatter, datefmt='%m/%d/%Y %I:%M:%S %p', stream=sys.stdout, level=logLevel)
     logging.getLogger(__name__)
 
-    # Create list of template keys
-    mstrTemplKeys = templates.templateKeys
-    templateLookup = templates.loadedTemplates
+    # Create list of sponsors
+    sponsors = templates.loadedTemplates['sponsors']
 
     # Create Hootsuite Bulk Composer dictionary
     if isinstance(sponsors, list):
